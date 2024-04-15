@@ -1,0 +1,51 @@
+Practical No : 9B OnTouchListener
+**Activiy_main.xml
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:id="@+id/rl">
+
+</RelativeLayout>
+
+**MainActivity.java
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.RelativeLayout;
+
+public class MainActivity extends AppCompatActivity {
+
+    RelativeLayout relativeLayout;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        relativeLayout=findViewById(R.id.rl);
+        relativeLayout.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                int r=(int)(Math.random()*255);
+                int g=(int)(Math.random()*255);
+                int b=(int)(Math.random()*255);
+                int col= Color.rgb(r,g,b);
+                switch (motionEvent.getAction())
+                {	
+                    case MotionEvent.ACTION_MOVE:
+                        relativeLayout.setBackgroundColor(col);
+                        break;
+                }
+                return true;
+            }
+        });
+    }
+}
+
+
+
+
+
